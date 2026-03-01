@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TechFix Pro — Expert Tech Repair & Smart Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #FFD700;
+    --gold2: #FFA500;
+    --green: #39FF14;
+    --dark: #080C14;
+    --dark2: #0D1421;
+    --dark3: #111927;
+    --blue: #0A84FF;
+    --text: #E8EDF5;
+    --muted: #7A8BA0;
+    --card: rgba(255,255,255,0.04);
+    --border: rgba(255,215,0,0.15);
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--dark);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* BACKGROUND EFFECTS */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% 10%, rgba(10,132,255,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 80%, rgba(255,165,0,0.08) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* GRID OVERLAY */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(10,132,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(10,132,255,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(8,12,20,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: 'Orbitron', monospace;
+    font-weight: 900;
+    font-size: 1.4rem;
+    background: linear-gradient(90deg, var(--gold), var(--gold2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+  }
+
+  .logo span {
+    background: linear-gradient(90deg, var(--green), #00FF88);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  nav ul {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  nav ul a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: color 0.3s;
+  }
+  nav ul a:hover { color: var(--gold); }
+
+  .nav-cta {
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    color: #000 !important;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-weight: 700 !important;
+    transition: transform 0.2s, box-shadow 0.2s !important;
+  }
+  .nav-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(255,215,0,0.4);
+    color: #000 !important;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 24px 80px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(57,255,20,0.1);
+    border: 1px solid rgba(57,255,20,0.3);
+    padding: 6px 18px;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    color: var(--green);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 8px; height: 8px;
+    background: var(--green);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--green);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+  }
+
+  .hero h1 {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(2.5rem, 7vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 12px;
+    animation: fadeUp 0.8s 0.15s ease both;
+  }
+
+  .hero h1 .line1 { display: block; color: var(--text); }
+  .hero h1 .line2 {
+    display: block;
+    background: linear-gradient(90deg, var(--gold), var(--gold2), var(--green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--muted);
+    max-width: 620px;
+    line-height: 1.7;
+    margin-bottom: 48px;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    animation: fadeUp 0.8s 0.45s ease both;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    color: #000;
+    font-weight: 700;
+    padding: 16px 36px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(255,215,0,0.5);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    font-weight: 600;
+    padding: 16px 36px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .btn-outline:hover {
+    border-color: var(--gold);
+    background: rgba(255,215,0,0.05);
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+    margin: 0 auto 80px;
+    max-width: 900px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .stat {
+    flex: 1;
+    min-width: 160px;
+    padding: 28px 24px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Orbitron', monospace;
+    font-size: 2rem;
+    font-weight: 900;
+    background: linear-gradient(90deg, var(--gold), var(--gold2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: block;
+  }
+  .stat-label { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
+
+  /* SECTION BASE */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 90px 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-tag {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .section-desc {
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    max-width: 580px;
+    margin-bottom: 56px;
+  }
+
+  /* SERVICES GRID */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .service-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .service-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255,215,0,0.4);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+  .service-card:hover::before { opacity: 1; }
+
+  .service-icon {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .service-card h3 {
+    font-family: 'Orbitron', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text);
+    letter-spacing: 0.5px;
+  }
+
+  .service-card p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .service-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 18px;
+  }
+
+  .tag {
+    font-size: 0.72rem;
+    padding: 4px 10px;
+    border-radius: 100px;
+    background: rgba(255,215,0,0.08);
+    border: 1px solid rgba(255,215,0,0.2);
+    color: var(--gold2);
+  }
+
+  /* ANDROID TV SECTION */
+  .android-section {
+    background: linear-gradient(135deg, rgba(57,255,20,0.05), rgba(10,132,255,0.05));
+    border: 1px solid rgba(57,255,20,0.15);
+    border-radius: 24px;
+    padding: 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .android-section .price-badge {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Orbitron', monospace;
+    font-weight: 900;
+    font-size: 4rem;
+    line-height: 1;
+    margin: 20px 0;
+  }
+  .android-section .price-badge .rm {
+    font-size: 2rem;
+  }
+
+  .android-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 24px 0 32px;
+  }
+  .android-features li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.95rem;
+    color: var(--text);
+  }
+  .android-features li::before {
+    content: '✓';
+    width: 24px; height: 24px;
+    background: rgba(57,255,20,0.15);
+    border: 1px solid rgba(57,255,20,0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    color: var(--green);
+    flex-shrink: 0;
+  }
+
+  .android-visual {
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(57,255,20,0.2);
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+  }
+  .tv-screen {
+    background: #111;
+    border-radius: 12px;
+    padding: 20px;
+    border: 3px solid #333;
+    position: relative;
+  }
+  .tv-apps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .app-icon {
+    background: rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: 10px 6px;
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-align: center;
+  }
+  .app-icon .ai {
+    font-size: 1.4rem;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .tv-stand {
+    width: 60px;
+    height: 12px;
+    background: #333;
+    margin: 0 auto;
+    border-radius: 0 0 8px 8px;
+  }
+  .tv-base {
+    width: 100px;
+    height: 6px;
+    background: #444;
+    margin: 0 auto;
+    border-radius: 4px;
+  }
+
+  /* PROGRAMMING SECTION */
+  .prog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+  }
+
+  .prog-card {
+    background: var(--card);
+    border: 1px solid rgba(10,132,255,0.2);
+    border-radius: 16px;
+    padding: 32px 28px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .prog-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--blue), var(--green));
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+  .prog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 50px rgba(10,132,255,0.15);
+  }
+  .prog-card:hover::after { transform: scaleX(1); }
+  .prog-card h3 {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.95rem;
+    color: var(--blue);
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
+  .prog-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+  /* PROCESS */
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0;
+    position: relative;
+    margin-top: 48px;
+  }
+  .step {
+    text-align: center;
+    padding: 32px 24px;
+    position: relative;
+  }
+  .step::after {
+    content: '→';
+    position: absolute;
+    right: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gold);
+    font-size: 1.5rem;
+    opacity: 0.4;
+  }
+  .step:last-child::after { display: none; }
+  .step-num {
+    width: 52px; height: 52px;
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    color: #000;
+    font-family: 'Orbitron', monospace;
+    font-weight: 900;
+    font-size: 1.2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+  }
+  .step h4 {
+    font-weight: 700;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+  }
+  .step p { font-size: 0.83rem; color: var(--muted); }
+
+  /* CTA SECTION */
+  .cta-section {
+    text-align: center;
+    background: linear-gradient(135deg, rgba(255,215,0,0.06), rgba(255,165,0,0.04));
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 80px 40px;
+  }
+
+  .cta-section h2 {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 900;
+    margin-bottom: 16px;
+  }
+
+  .cta-section p {
+    color: var(--muted);
+    font-size: 1.05rem;
+    margin-bottom: 40px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .contact-chips {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 32px;
+  }
+
+  .chip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 12px 22px;
+    border-radius: 100px;
+    font-size: 0.9rem;
+    color: var(--text);
+    text-decoration: none;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .chip:hover {
+    border-color: var(--gold);
+    background: rgba(255,215,0,0.07);
+  }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 40px 24px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  .footer-logo {
+    font-family: 'Orbitron', monospace;
+    font-weight: 900;
+    font-size: 1.2rem;
+    background: linear-gradient(90deg, var(--gold), var(--gold2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  /* DIVIDER */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 0 auto;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SCROLLING TICKER */
+  .ticker-wrap {
+    background: linear-gradient(90deg, var(--gold), var(--gold2));
+    padding: 12px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .ticker-track {
+    display: inline-block;
+    animation: ticker 30s linear infinite;
+  }
+  .ticker-item {
+    display: inline-block;
+    margin: 0 40px;
+    font-family: 'Orbitron', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #000;
+    letter-spacing: 2px;
+  }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    nav ul { display: none; }
+    .android-section {
+      grid-template-columns: 1fr;
+      padding: 36px 24px;
+      gap: 32px;
+    }
+    .step::after { display: none; }
+    .android-section .price-badge { font-size: 3rem; }
+  }
+
+  /* Intersection observer animations */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+  /* Sections themselves always visible */
+  section {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.9) translateY(16px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">TECH<span>FIX</span> PRO</div>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#android-tv">Android TV</a></li>
+    <li><a href="#programming">Dev Solutions</a></li>
+    <li><a href="#contact" class="nav-cta">Get Help</a></li>
+  </ul>
+</nav>
+
+<!-- TICKER -->
+<div class="ticker-wrap" style="margin-top: 65px;">
+  <div class="ticker-track">
+    <span class="ticker-item">✦ macOS REPAIR</span>
+    <span class="ticker-item">✦ WINDOWS SUPPORT</span>
+    <span class="ticker-item">✦ ANDROID TV UPGRADE — RM100</span>
+    <span class="ticker-item">✦ iOS & iPadOS FIX</span>
+    <span class="ticker-item">✦ CHROMEBOOK SERVICE</span>
+    <span class="ticker-item">✦ CUSTOM WEB APPS</span>
+    <span class="ticker-item">✦ INVOICE SYSTEMS</span>
+    <span class="ticker-item">✦ ON-SITE & REMOTE SUPPORT</span>
+    <span class="ticker-item">✦ macOS REPAIR</span>
+    <span class="ticker-item">✦ WINDOWS SUPPORT</span>
+    <span class="ticker-item">✦ ANDROID TV UPGRADE — RM100</span>
+    <span class="ticker-item">✦ iOS & iPadOS FIX</span>
+    <span class="ticker-item">✦ CHROMEBOOK SERVICE</span>
+    <span class="ticker-item">✦ CUSTOM WEB APPS</span>
+    <span class="ticker-item">✦ INVOICE SYSTEMS</span>
+    <span class="ticker-item">✦ ON-SITE & REMOTE SUPPORT</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Certified Tech Specialists</div>
+  <h1>
+    <span class="line1">YOUR DEVICES.</span>
+    <span class="line2">FULLY UNLEASHED.</span>
+  </h1>
+  <p class="hero-sub">Expert repair, smart upgrades, and custom tech solutions for macOS, Windows, Chromebook, iOS & iPadOS — plus affordable Android TV upgrades and web automation tools.</p>
+  <div class="hero-btns">
+    <a href="#services" class="btn-primary">Explore Services</a>
+    <a href="#contact" class="btn-outline">Contact Us →</a>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar" style="max-width:1100px; margin: 0 auto 80px; position: relative; z-index:1;">
+  <div class="stat">
+    <span class="stat-num">5+</span>
+    <span class="stat-label">Platforms Supported</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num">RM100</span>
+    <span class="stat-label">Android TV Upgrade</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num">100%</span>
+    <span class="stat-label">Customer-First</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num">On-Site</span>
+    <span class="stat-label">& Remote Support</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <p class="section-tag reveal">What We Do</p>
+  <h2 class="section-title reveal">Comprehensive<br>Tech Support</h2>
+  <p class="section-desc reveal">Our certified technicians handle every device — from hardware failures to stubborn software glitches. We come to you, or you can reach us remotely.</p>
+
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <span class="service-icon">🍎</span>
+      <h3>macOS & iOS / iPadOS</h3>
+      <p>Expert Apple diagnostics, repairs, and maintenance. From MacBook hardware issues to iOS software crashes — we handle it all.</p>
+      <div class="service-tags">
+        <span class="tag">Mac Repair</span>
+        <span class="tag">iPhone Fix</span>
+        <span class="tag">iPad Support</span>
+      </div>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">🪟</span>
+      <h3>Windows Systems</h3>
+      <p>Complete Windows support — virus removal, OS reinstallation, driver updates, performance tuning, and more.</p>
+      <div class="service-tags">
+        <span class="tag">Windows 10/11</span>
+        <span class="tag">Driver Fix</span>
+        <span class="tag">Virus Removal</span>
+      </div>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">🌐</span>
+      <h3>Chromebook Support</h3>
+      <p>Chromebook repair, OS recovery, and performance optimization. Get your Chromebook running like day one.</p>
+      <div class="service-tags">
+        <span class="tag">ChromeOS</span>
+        <span class="tag">Recovery</span>
+        <span class="tag">Hardware</span>
+      </div>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">🔧</span>
+      <h3>Hardware Diagnostics</h3>
+      <p>Deep hardware inspection — RAM, HDD/SSD, cooling systems, motherboards. We find the root cause, not just the symptom.</p>
+      <div class="service-tags">
+        <span class="tag">Diagnostics</span>
+        <span class="tag">RAM/SSD</span>
+        <span class="tag">Thermal Fix</span>
+      </div>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">📡</span>
+      <h3>Remote Support</h3>
+      <p>Get help without leaving your home. Secure remote sessions for software issues, setup assistance, and guidance.</p>
+      <div class="service-tags">
+        <span class="tag">Remote Access</span>
+        <span class="tag">Secure Session</span>
+        <span class="tag">Fast Response</span>
+      </div>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">🏠</span>
+      <h3>On-Site Visits</h3>
+      <p>We come to your location — home or office. Personalized, hands-on service at your convenience.</p>
+      <div class="service-tags">
+        <span class="tag">Home Visit</span>
+        <span class="tag">Office Support</span>
+        <span class="tag">Flexible Hours</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" style="position:relative;z-index:1;max-width:1200px;margin:0 auto;"></div>
+
+<!-- ANDROID TV -->
+<section id="android-tv" style="max-width:1200px;">
+  <div class="android-section">
+    <div>
+      <p class="section-tag" style="margin-bottom:8px;">Hot Offer 🔥</p>
+      <h2 class="section-title" style="margin-bottom:0;">Turn Your Old PC Into an Android TV</h2>
+      <div class="price-badge"><span class="rm">RM</span>100</div>
+      <p style="color:var(--muted);line-height:1.7;font-size:0.95rem;">Give your aging computer a second life. We transform it into a full-featured Android TV experience — no new hardware needed.</p>
+      <ul class="android-features">
+        <li>Stream YouTube, Disney+ & more</li>
+        <li>Big screen entertainment on your existing TV</li>
+        <li>Remote-friendly Android interface</li>
+        <li>Smooth, stable performance</li>
+        <li>Cost-effective — save thousands vs. new TV</li>
+        <li>Quick setup, we handle everything</li>
+      </ul>
+      <a href="#contact" class="btn-primary" style="display:inline-block;">Book This Upgrade →</a>
+    </div>
+    <div class="android-visual">
+      <div class="tv-screen">
+        <div style="font-family:'Orbitron',monospace;font-size:0.65rem;color:var(--muted);margin-bottom:12px;letter-spacing:1px;">ANDROID TV INTERFACE</div>
+        <div class="tv-apps">
+          <div class="app-icon"><span class="ai">▶️</span>YouTube</div>
+          
+          <div class="app-icon"><span class="ai">✨</span>Disney+</div>
+          <div class="app-icon"><span class="ai">🎵</span>Spotify</div>
+          <div class="app-icon"><span class="ai">📱</span>Play Store</div>
+          <div class="app-icon"><span class="ai">🎮</span>Games</div>
+        </div>
+        <div style="background:rgba(57,255,20,0.08);border:1px solid rgba(57,255,20,0.2);border-radius:8px;padding:10px;font-size:0.72rem;color:var(--green);">
+          ✓ Android TV OS — Fully Installed
+        </div>
+      </div>
+      <div class="tv-stand"></div>
+      <div class="tv-base"></div>
+      <p style="margin-top:20px;font-size:0.8rem;color:var(--muted);">🤖 Full Android experience on your old machine</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider" style="position:relative;z-index:1;max-width:1200px;margin:0 auto;"></div>
+
+<!-- PROGRAMMING / DEV SOLUTIONS -->
+<section id="programming">
+  <p class="section-tag reveal">Custom Dev Solutions</p>
+  <h2 class="section-title reveal">Simple. Powerful.<br>Web Apps & Tools</h2>
+  <p class="section-desc reveal">Using Google Apps Script, HTML, and AppSheet, we build affordable business automation tools tailored to your workflow.</p>
+
+  <div class="prog-grid">
+    <div class="prog-card reveal">
+      <h3>🧾 Invoicing System</h3>
+      <p>Custom invoicing tools built with Google Sheets & Apps Script. Auto-calculate, send, and track — all from a browser.</p>
+    </div>
+    <div class="prog-card reveal">
+      <h3>🌐 Business Websites</h3>
+      <p>Clean, functional HTML websites. Perfect for small businesses needing an online presence without the big price tag.</p>
+    </div>
+    <div class="prog-card reveal">
+      <h3>🏷️ Label Printing Tool</h3>
+      <p>Web-based label generation and printing systems. Input data, auto-format, and print — fast and accurate.</p>
+    </div>
+    <div class="prog-card reveal">
+      <h3>📊 AppSheet Apps</h3>
+      <p>No-code mobile & desktop apps for inventory, orders, tracking, and more. Quick to deploy, easy to use.</p>
+    </div>
+    <div class="prog-card reveal">
+      <h3>⚙️ Google Workspace Automation</h3>
+      <p>Connect your Sheets, Docs, Gmail & Drive with smart scripts. Automate repetitive tasks and save hours every week.</p>
+    </div>
+    <div class="prog-card reveal">
+      <h3>✨ Custom Solutions</h3>
+      <p>Have a unique business need? Tell us what you want to automate or build — we'll make it work affordably.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider" style="position:relative;z-index:1;max-width:1200px;margin:0 auto;"></div>
+
+<!-- HOW IT WORKS -->
+<section>
+  <p class="section-tag reveal">Simple Process</p>
+  <h2 class="section-title reveal">How It Works</h2>
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h4>Contact Us</h4>
+      <p>Reach out via WhatsApp, call, or the form. Describe your issue.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h4>Diagnosis</h4>
+      <p>We assess the problem — remotely or on-site — and give a clear quote.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h4>Fix & Deliver</h4>
+      <p>We repair, upgrade, or build — quickly and cleanly.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <h4>You're Sorted</h4>
+      <p>Your device works perfectly. We follow up to ensure satisfaction.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact" style="padding-top: 0;">
+  <div class="cta-section">
+    <p class="section-tag" style="margin-bottom:12px;">Let's Work Together</p>
+    <h2>Ready to Fix, Upgrade<br>or Build Something?</h2>
+    <p>Get in touch today. Fast response, honest pricing, certified expertise.</p>
+    <button class="btn-primary" onclick="openQuoteModal()">Get a Free Quote</button>
+    <div class="contact-chips">
+      <a href="https://wa.me/60166868062" class="chip" target="_blank">
+        <span>💬</span> WhatsApp Us
+      </a>
+      <a href="tel:+60166868062" class="chip">
+        <span>📞</span> 016-686 8062
+      </a>
+      <a href="mailto:jraj1675@gmail.com" class="chip">
+        <span>✉️</span> Email Us
+      </a>
+      <a href="https://share.google/Emm51xghT7qM2yO2r" class="chip" target="_blank">
+        <span>📍</span> Google Business
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE MODAL -->
+<div id="quoteModal" style="display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.75);backdrop-filter:blur(8px);align-items:center;justify-content:center;">
+  <div style="background:#0D1421;border:1px solid rgba(255,215,0,0.3);border-radius:20px;padding:40px 36px;width:90%;max-width:460px;position:relative;box-shadow:0 30px 80px rgba(0,0,0,0.6);animation:popIn 0.3s ease;">
+    <button onclick="closeQuoteModal()" style="position:absolute;top:16px;right:20px;background:rgba(255,255,255,0.06);border:none;color:#aaa;font-size:1.2rem;cursor:pointer;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,215,0,0.15)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">✕</button>
+    <p style="font-size:0.72rem;text-transform:uppercase;letter-spacing:3px;color:#FFD700;font-weight:600;margin-bottom:8px;">Free Quote</p>
+    <h3 style="font-family:'Orbitron',monospace;font-size:1.3rem;font-weight:900;color:#E8EDF5;margin-bottom:6px;">Tell Us What You Need</h3>
+    <p style="font-size:0.85rem;color:#7A8BA0;margin-bottom:28px;">Fill in the details and we'll get back to you shortly.</p>
+
+    <div id="quoteForm">
+      <div style="margin-bottom:16px;">
+        <label style="font-size:0.78rem;color:#7A8BA0;display:block;margin-bottom:6px;letter-spacing:0.5px;">YOUR NAME</label>
+        <input id="qName" type="text" placeholder="e.g. Ahmad Razif" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,215,0,0.2);border-radius:8px;padding:12px 14px;color:#E8EDF5;font-size:0.9rem;font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(255,215,0,0.5)'" onblur="this.style.borderColor='rgba(255,215,0,0.2)'" />
+      </div>
+      <div style="margin-bottom:16px;">
+        <label style="font-size:0.78rem;color:#7A8BA0;display:block;margin-bottom:6px;letter-spacing:0.5px;">EMAIL ADDRESS</label>
+        <input id="qEmail" type="email" placeholder="e.g. you@email.com" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,215,0,0.2);border-radius:8px;padding:12px 14px;color:#E8EDF5;font-size:0.9rem;font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(255,215,0,0.5)'" onblur="this.style.borderColor='rgba(255,215,0,0.2)'" />
+      </div>
+      <div style="margin-bottom:16px;">
+        <label style="font-size:0.78rem;color:#7A8BA0;display:block;margin-bottom:6px;letter-spacing:0.5px;">CONTACT NUMBER</label>
+        <input id="qPhone" type="tel" placeholder="e.g. 016-123 4567" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,215,0,0.2);border-radius:8px;padding:12px 14px;color:#E8EDF5;font-size:0.9rem;font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(255,215,0,0.5)'" onblur="this.style.borderColor='rgba(255,215,0,0.2)'" />
+      </div>
+      <div style="margin-bottom:24px;">
+        <label style="font-size:0.78rem;color:#7A8BA0;display:block;margin-bottom:6px;letter-spacing:0.5px;">DESCRIBE YOUR ISSUE / REQUEST</label>
+        <textarea id="qDesc" placeholder="e.g. My laptop won't turn on, need Android TV upgrade, need an invoicing system..." rows="4" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,215,0,0.2);border-radius:8px;padding:12px 14px;color:#E8EDF5;font-size:0.9rem;font-family:'DM Sans',sans-serif;outline:none;resize:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(255,215,0,0.5)'" onblur="this.style.borderColor='rgba(255,215,0,0.2)'"></textarea>
+      </div>
+      <button onclick="submitQuote()" style="width:100%;background:linear-gradient(135deg,#FFD700,#FFA500);color:#000;font-weight:700;padding:14px;border-radius:8px;border:none;font-size:1rem;font-family:'DM Sans',sans-serif;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 30px rgba(255,215,0,0.4)'" onmouseout="this.style.transform='none';this.style.boxShadow='none'">
+        Send via WhatsApp 💬
+      </button>
+      <p style="font-size:0.75rem;color:#7A8BA0;text-align:center;margin-top:12px;">We'll respond within 24 hours 🚀</p>
+    </div>
+
+    <div id="quoteSuccess" style="display:none;text-align:center;padding:20px 0;">
+      <div style="font-size:3rem;margin-bottom:16px;">✅</div>
+      <h4 style="font-family:'Orbitron',monospace;color:#39FF14;margin-bottom:8px;">Message Sent!</h4>
+      <p style="color:#7A8BA0;font-size:0.9rem;">Opening WhatsApp now. We'll be in touch shortly!</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">TECHFIX PRO</span>
+  <p>Expert Tech Repair · Android TV Upgrades · Custom Web Solutions</p>
+  <p style="margin-top:8px;">© 2025 TechFix Pro. All rights reserved. Malaysia 🇲🇾</p>
+</footer>
+
+<script>
+// Modal
+function openQuoteModal() {
+  const modal = document.getElementById('quoteModal');
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeQuoteModal() {
+  document.getElementById('quoteModal').style.display = 'none';
+  document.body.style.overflow = '';
+  document.getElementById('quoteForm').style.display = 'block';
+  document.getElementById('quoteSuccess').style.display = 'none';
+  ['qName','qEmail','qPhone','qDesc'].forEach(id => document.getElementById(id).value = '');
+}
+document.getElementById('quoteModal').addEventListener('click', function(e) {
+  if (e.target === this) closeQuoteModal();
+});
+function submitQuote() {
+  const name = document.getElementById('qName').value.trim();
+  const email = document.getElementById('qEmail').value.trim();
+  const phone = document.getElementById('qPhone').value.trim();
+  const desc = document.getElementById('qDesc').value.trim();
+  if (!name || !phone || !desc) {
+    alert('Please fill in your name, contact number, and describe your issue.');
+    return;
+  }
+  const msg = encodeURIComponent(
+    `Hi TechFix Pro! 👋\n\n*New Quote Request*\n\n👤 Name: ${name}\n📧 Email: ${email || 'N/A'}\n📞 Phone: ${phone}\n\n📝 Request:\n${desc}`
+  );
+  document.getElementById('quoteForm').style.display = 'none';
+  document.getElementById('quoteSuccess').style.display = 'block';
+  setTimeout(() => {
+    window.open(`https://wa.me/60166868062?text=${msg}`, '_blank');
+    setTimeout(closeQuoteModal, 2000);
+  }, 800);
+}
+
+// Intersection Observer for reveal animations
+const reveals = document.querySelectorAll('.reveal');
+
+// Fallback: make all visible after short delay
+setTimeout(() => reveals.forEach(el => el.classList.add('visible')), 300);
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+reveals.forEach(el => observer.observe(el));
+</script></body>
+</html>
