@@ -29,7 +29,6 @@
     overflow-x: hidden;
   }
 
-  /* BACKGROUND EFFECTS */
   body::before {
     content: '';
     position: fixed;
@@ -41,7 +40,6 @@
     z-index: 0;
   }
 
-  /* GRID OVERLAY */
   body::after {
     content: '';
     position: fixed;
@@ -67,7 +65,6 @@
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
   }
-
   .logo {
     font-family: 'Orbitron', monospace;
     font-weight: 900;
@@ -76,20 +73,14 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     letter-spacing: 2px;
+    cursor: pointer;
   }
-
   .logo span {
     background: linear-gradient(90deg, var(--green), #00FF88);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-
-  nav ul {
-    display: flex;
-    gap: 32px;
-    list-style: none;
-  }
-
+  nav ul { display: flex; gap: 32px; list-style: none; }
   nav ul a {
     color: var(--muted);
     text-decoration: none;
@@ -99,7 +90,6 @@
     transition: color 0.3s;
   }
   nav ul a:hover { color: var(--gold); }
-
   .nav-cta {
     background: linear-gradient(135deg, var(--gold), var(--gold2));
     color: #000 !important;
@@ -111,7 +101,51 @@
   .nav-cta:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 30px rgba(255,215,0,0.4);
-    color: #000 !important;
+  }
+
+  /* HAMBURGER */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px; height: 2px;
+    background: var(--gold);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 65px; left: 0; right: 0;
+    background: rgba(8,12,20,0.97);
+    border-bottom: 1px solid var(--border);
+    z-index: 99;
+    padding: 20px;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    color: var(--text);
+    text-decoration: none;
+    padding: 14px 16px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+  }
+  .mobile-menu a:hover { background: rgba(255,215,0,0.08); color: var(--gold); }
+  .mobile-menu a.nav-cta-m {
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    color: #000;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 8px;
   }
 
   /* HERO */
@@ -126,7 +160,6 @@
     text-align: center;
     padding: 120px 24px 80px;
   }
-
   .hero-badge {
     display: inline-flex;
     align-items: center;
@@ -150,12 +183,10 @@
     box-shadow: 0 0 10px var(--green);
     animation: pulse 2s infinite;
   }
-
   @keyframes pulse {
     0%, 100% { opacity: 1; transform: scale(1); }
     50% { opacity: 0.5; transform: scale(1.3); }
   }
-
   .hero h1 {
     font-family: 'Orbitron', monospace;
     font-size: clamp(2.5rem, 7vw, 5.5rem);
@@ -164,7 +195,6 @@
     margin-bottom: 12px;
     animation: fadeUp 0.8s 0.15s ease both;
   }
-
   .hero h1 .line1 { display: block; color: var(--text); }
   .hero h1 .line2 {
     display: block;
@@ -172,7 +202,6 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-
   .hero-sub {
     font-size: clamp(1rem, 2vw, 1.2rem);
     color: var(--muted);
@@ -181,7 +210,6 @@
     margin-bottom: 48px;
     animation: fadeUp 0.8s 0.3s ease both;
   }
-
   .hero-btns {
     display: flex;
     gap: 16px;
@@ -189,7 +217,6 @@
     justify-content: center;
     animation: fadeUp 0.8s 0.45s ease both;
   }
-
   .btn-primary {
     background: linear-gradient(135deg, var(--gold), var(--gold2));
     color: #000;
@@ -200,12 +227,13 @@
     font-size: 1rem;
     transition: transform 0.2s, box-shadow 0.2s;
     font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    border: none;
   }
   .btn-primary:hover {
     transform: translateY(-3px);
     box-shadow: 0 12px 40px rgba(255,215,0,0.5);
   }
-
   .btn-outline {
     background: transparent;
     color: var(--text);
@@ -228,16 +256,14 @@
     z-index: 1;
     display: flex;
     justify-content: center;
-    gap: 0;
     flex-wrap: wrap;
     margin: 0 auto 80px;
-    max-width: 900px;
+    max-width: 1100px;
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 16px;
     overflow: hidden;
   }
-
   .stat {
     flex: 1;
     min-width: 160px;
@@ -257,7 +283,7 @@
   }
   .stat-label { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
 
-  /* SECTION BASE */
+  /* SECTIONS */
   section {
     position: relative;
     z-index: 1;
@@ -265,7 +291,6 @@
     max-width: 1200px;
     margin: 0 auto;
   }
-
   .section-tag {
     font-size: 0.75rem;
     text-transform: uppercase;
@@ -274,7 +299,6 @@
     font-weight: 600;
     margin-bottom: 12px;
   }
-
   .section-title {
     font-family: 'Orbitron', monospace;
     font-size: clamp(1.8rem, 4vw, 2.8rem);
@@ -282,7 +306,6 @@
     line-height: 1.15;
     margin-bottom: 16px;
   }
-
   .section-desc {
     color: var(--muted);
     font-size: 1.05rem;
@@ -297,7 +320,6 @@
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
   }
-
   .service-card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -316,19 +338,9 @@
     opacity: 0;
     transition: opacity 0.3s;
   }
-  .service-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(255,215,0,0.4);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-  }
+  .service-card:hover { transform: translateY(-6px); border-color: rgba(255,215,0,0.4); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
   .service-card:hover::before { opacity: 1; }
-
-  .service-icon {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    display: block;
-  }
-
+  .service-icon { font-size: 2.5rem; margin-bottom: 20px; display: block; }
   .service-card h3 {
     font-family: 'Orbitron', monospace;
     font-size: 1rem;
@@ -337,20 +349,8 @@
     color: var(--text);
     letter-spacing: 0.5px;
   }
-
-  .service-card p {
-    font-size: 0.9rem;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-
-  .service-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 18px;
-  }
-
+  .service-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+  .service-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
   .tag {
     font-size: 0.72rem;
     padding: 4px 10px;
@@ -360,7 +360,7 @@
     color: var(--gold2);
   }
 
-  /* ANDROID TV SECTION */
+  /* ANDROID TV */
   .android-section {
     background: linear-gradient(135deg, rgba(57,255,20,0.05), rgba(10,132,255,0.05));
     border: 1px solid rgba(57,255,20,0.15);
@@ -371,8 +371,7 @@
     gap: 60px;
     align-items: center;
   }
-
-  .android-section .price-badge {
+  .price-badge {
     display: inline-flex;
     align-items: baseline;
     gap: 4px;
@@ -385,17 +384,8 @@
     line-height: 1;
     margin: 20px 0;
   }
-  .android-section .price-badge .rm {
-    font-size: 2rem;
-  }
-
-  .android-features {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin: 24px 0 32px;
-  }
+  .price-badge .rm { font-size: 2rem; }
+  .android-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin: 24px 0 32px; }
   .android-features li {
     display: flex;
     align-items: center;
@@ -416,7 +406,6 @@
     color: var(--green);
     flex-shrink: 0;
   }
-
   .android-visual {
     background: rgba(0,0,0,0.4);
     border: 1px solid rgba(57,255,20,0.2);
@@ -424,19 +413,8 @@
     padding: 32px;
     text-align: center;
   }
-  .tv-screen {
-    background: #111;
-    border-radius: 12px;
-    padding: 20px;
-    border: 3px solid #333;
-    position: relative;
-  }
-  .tv-apps {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    margin-bottom: 16px;
-  }
+  .tv-screen { background: #111; border-radius: 12px; padding: 20px; border: 3px solid #333; }
+  .tv-apps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px; }
   .app-icon {
     background: rgba(255,255,255,0.08);
     border-radius: 8px;
@@ -445,33 +423,16 @@
     color: var(--muted);
     text-align: center;
   }
-  .app-icon .ai {
-    font-size: 1.4rem;
-    display: block;
-    margin-bottom: 4px;
-  }
-  .tv-stand {
-    width: 60px;
-    height: 12px;
-    background: #333;
-    margin: 0 auto;
-    border-radius: 0 0 8px 8px;
-  }
-  .tv-base {
-    width: 100px;
-    height: 6px;
-    background: #444;
-    margin: 0 auto;
-    border-radius: 4px;
-  }
+  .app-icon .ai { font-size: 1.4rem; display: block; margin-bottom: 4px; }
+  .tv-stand { width: 60px; height: 12px; background: #333; margin: 0 auto; border-radius: 0 0 8px 8px; }
+  .tv-base { width: 100px; height: 6px; background: #444; margin: 0 auto; border-radius: 4px; }
 
-  /* PROGRAMMING SECTION */
+  /* DEV SOLUTIONS */
   .prog-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 20px;
   }
-
   .prog-card {
     background: var(--card);
     border: 1px solid rgba(10,132,255,0.2);
@@ -491,18 +452,9 @@
     transition: transform 0.3s;
     transform-origin: left;
   }
-  .prog-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 50px rgba(10,132,255,0.15);
-  }
+  .prog-card:hover { transform: translateY(-4px); box-shadow: 0 16px 50px rgba(10,132,255,0.15); }
   .prog-card:hover::after { transform: scaleX(1); }
-  .prog-card h3 {
-    font-family: 'Orbitron', monospace;
-    font-size: 0.95rem;
-    color: var(--blue);
-    margin-bottom: 12px;
-    letter-spacing: 0.5px;
-  }
+  .prog-card h3 { font-family: 'Orbitron', monospace; font-size: 0.95rem; color: var(--blue); margin-bottom: 12px; letter-spacing: 0.5px; }
   .prog-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
 
   /* PROCESS */
@@ -513,16 +465,11 @@
     position: relative;
     margin-top: 48px;
   }
-  .step {
-    text-align: center;
-    padding: 32px 24px;
-    position: relative;
-  }
+  .step { text-align: center; padding: 32px 24px; position: relative; }
   .step::after {
     content: '→';
     position: absolute;
-    right: -12px;
-    top: 50%;
+    right: -12px; top: 50%;
     transform: translateY(-50%);
     color: var(--gold);
     font-size: 1.5rem;
@@ -542,14 +489,10 @@
     justify-content: center;
     margin: 0 auto 20px;
   }
-  .step h4 {
-    font-weight: 700;
-    margin-bottom: 8px;
-    font-size: 0.95rem;
-  }
+  .step h4 { font-weight: 700; margin-bottom: 8px; font-size: 0.95rem; }
   .step p { font-size: 0.83rem; color: var(--muted); }
 
-  /* CTA SECTION */
+  /* CTA */
   .cta-section {
     text-align: center;
     background: linear-gradient(135deg, rgba(255,215,0,0.06), rgba(255,165,0,0.04));
@@ -557,31 +500,14 @@
     border-radius: 24px;
     padding: 80px 40px;
   }
-
   .cta-section h2 {
     font-family: 'Orbitron', monospace;
     font-size: clamp(1.8rem, 4vw, 3rem);
     font-weight: 900;
     margin-bottom: 16px;
   }
-
-  .cta-section p {
-    color: var(--muted);
-    font-size: 1.05rem;
-    margin-bottom: 40px;
-    max-width: 480px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .contact-chips {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 32px;
-  }
-
+  .cta-section p { color: var(--muted); font-size: 1.05rem; margin-bottom: 40px; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .contact-chips { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 32px; }
   .chip {
     display: flex;
     align-items: center;
@@ -595,10 +521,7 @@
     text-decoration: none;
     transition: border-color 0.3s, background 0.3s;
   }
-  .chip:hover {
-    border-color: var(--gold);
-    background: rgba(255,215,0,0.07);
-  }
+  .chip:hover { border-color: var(--gold); background: rgba(255,215,0,0.07); }
 
   /* FOOTER */
   footer {
@@ -610,7 +533,6 @@
     color: var(--muted);
     font-size: 0.85rem;
   }
-
   .footer-logo {
     font-family: 'Orbitron', monospace;
     font-weight: 900;
@@ -627,26 +549,22 @@
     width: 100%;
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--border), transparent);
+    max-width: 1200px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
   }
 
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* SCROLLING TICKER */
+  /* TICKER */
   .ticker-wrap {
     background: linear-gradient(90deg, var(--gold), var(--gold2));
     padding: 12px 0;
     overflow: hidden;
     white-space: nowrap;
+    position: relative;
+    z-index: 1;
   }
-  .ticker-track {
-    display: inline-block;
-    animation: ticker 30s linear infinite;
-  }
+  .ticker-track { display: inline-block; animation: ticker 30s linear infinite; }
   .ticker-item {
     display: inline-block;
     margin: 0 40px;
@@ -661,37 +579,24 @@
     to { transform: translateX(-50%); }
   }
 
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.92) translateY(16px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
   /* RESPONSIVE */
   @media (max-width: 768px) {
     nav { padding: 16px 20px; }
     nav ul { display: none; }
-    .android-section {
-      grid-template-columns: 1fr;
-      padding: 36px 24px;
-      gap: 32px;
-    }
+    .hamburger { display: flex; }
+    .android-section { grid-template-columns: 1fr; padding: 36px 24px; gap: 32px; }
     .step::after { display: none; }
-    .android-section .price-badge { font-size: 3rem; }
-  }
-
-  /* Intersection observer animations */
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: none;
-  }
-  /* Sections themselves always visible */
-  section {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-  @keyframes popIn {
-    from { opacity: 0; transform: scale(0.9) translateY(16px); }
-    to { opacity: 1; transform: scale(1) translateY(0); }
+    .price-badge { font-size: 3rem; }
   }
 </style>
 </head>
@@ -706,10 +611,21 @@
     <li><a href="#programming">Dev Solutions</a></li>
     <li><a href="#contact" class="nav-cta">Get Help</a></li>
   </ul>
+  <div class="hamburger" onclick="toggleMenu()" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
 </nav>
 
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" onclick="closeMenu()">🔧 Services</a>
+  <a href="#android-tv" onclick="closeMenu()">📺 Android TV</a>
+  <a href="#programming" onclick="closeMenu()">💻 Dev Solutions</a>
+  <a href="#contact" onclick="closeMenu()" class="nav-cta-m">Get Help</a>
+</div>
+
 <!-- TICKER -->
-<div class="ticker-wrap" style="margin-top: 65px;">
+<div class="ticker-wrap" style="margin-top:65px;">
   <div class="ticker-track">
     <span class="ticker-item">✦ macOS REPAIR</span>
     <span class="ticker-item">✦ WINDOWS SUPPORT</span>
@@ -745,7 +661,7 @@
 </div>
 
 <!-- STATS BAR -->
-<div class="stats-bar" style="max-width:1100px; margin: 0 auto 80px; position: relative; z-index:1;">
+<div class="stats-bar">
   <div class="stat">
     <span class="stat-num">5+</span>
     <span class="stat-label">Platforms Supported</span>
@@ -766,12 +682,11 @@
 
 <!-- SERVICES -->
 <section id="services">
-  <p class="section-tag reveal">What We Do</p>
-  <h2 class="section-title reveal">Comprehensive<br>Tech Support</h2>
-  <p class="section-desc reveal">Our certified technicians handle every device — from hardware failures to stubborn software glitches. We come to you, or you can reach us remotely.</p>
-
+  <p class="section-tag">What We Do</p>
+  <h2 class="section-title">Comprehensive<br>Tech Support</h2>
+  <p class="section-desc">Our certified technicians handle every device — from hardware failures to stubborn software glitches. We come to you, or you can reach us remotely.</p>
   <div class="services-grid">
-    <div class="service-card reveal">
+    <div class="service-card">
       <span class="service-icon">🍎</span>
       <h3>macOS & iOS / iPadOS</h3>
       <p>Expert Apple diagnostics, repairs, and maintenance. From MacBook hardware issues to iOS software crashes — we handle it all.</p>
@@ -781,7 +696,7 @@
         <span class="tag">iPad Support</span>
       </div>
     </div>
-    <div class="service-card reveal">
+    <div class="service-card">
       <span class="service-icon">🪟</span>
       <h3>Windows Systems</h3>
       <p>Complete Windows support — virus removal, OS reinstallation, driver updates, performance tuning, and more.</p>
@@ -791,7 +706,7 @@
         <span class="tag">Virus Removal</span>
       </div>
     </div>
-    <div class="service-card reveal">
+    <div class="service-card">
       <span class="service-icon">🌐</span>
       <h3>Chromebook Support</h3>
       <p>Chromebook repair, OS recovery, and performance optimization. Get your Chromebook running like day one.</p>
@@ -801,7 +716,7 @@
         <span class="tag">Hardware</span>
       </div>
     </div>
-    <div class="service-card reveal">
+    <div class="service-card">
       <span class="service-icon">🔧</span>
       <h3>Hardware Diagnostics</h3>
       <p>Deep hardware inspection — RAM, HDD/SSD, cooling systems, motherboards. We find the root cause, not just the symptom.</p>
@@ -811,7 +726,7 @@
         <span class="tag">Thermal Fix</span>
       </div>
     </div>
-    <div class="service-card reveal">
+    <div class="service-card">
       <span class="service-icon">📡</span>
       <h3>Remote Support</h3>
       <p>Get help without leaving your home. Secure remote sessions for software issues, setup assistance, and guidance.</p>
@@ -821,7 +736,7 @@
         <span class="tag">Fast Response</span>
       </div>
     </div>
-    <div class="service-card reveal">
+    <div class="service-card">
       <span class="service-icon">🏠</span>
       <h3>On-Site Visits</h3>
       <p>We come to your location — home or office. Personalized, hands-on service at your convenience.</p>
@@ -834,10 +749,10 @@
   </div>
 </section>
 
-<div class="divider" style="position:relative;z-index:1;max-width:1200px;margin:0 auto;"></div>
+<div class="divider"></div>
 
 <!-- ANDROID TV -->
-<section id="android-tv" style="max-width:1200px;">
+<section id="android-tv">
   <div class="android-section">
     <div>
       <p class="section-tag" style="margin-bottom:8px;">Hot Offer 🔥</p>
@@ -859,11 +774,11 @@
         <div style="font-family:'Orbitron',monospace;font-size:0.65rem;color:var(--muted);margin-bottom:12px;letter-spacing:1px;">ANDROID TV INTERFACE</div>
         <div class="tv-apps">
           <div class="app-icon"><span class="ai">▶️</span>YouTube</div>
-          
           <div class="app-icon"><span class="ai">✨</span>Disney+</div>
           <div class="app-icon"><span class="ai">🎵</span>Spotify</div>
           <div class="app-icon"><span class="ai">📱</span>Play Store</div>
           <div class="app-icon"><span class="ai">🎮</span>Games</div>
+          <div class="app-icon"><span class="ai">🎬</span>Movies</div>
         </div>
         <div style="background:rgba(57,255,20,0.08);border:1px solid rgba(57,255,20,0.2);border-radius:8px;padding:10px;font-size:0.72rem;color:var(--green);">
           ✓ Android TV OS — Fully Installed
@@ -876,48 +791,47 @@
   </div>
 </section>
 
-<div class="divider" style="position:relative;z-index:1;max-width:1200px;margin:0 auto;"></div>
+<div class="divider"></div>
 
-<!-- PROGRAMMING / DEV SOLUTIONS -->
+<!-- DEV SOLUTIONS -->
 <section id="programming">
-  <p class="section-tag reveal">Custom Dev Solutions</p>
-  <h2 class="section-title reveal">Simple. Powerful.<br>Web Apps & Tools</h2>
-  <p class="section-desc reveal">Using Google Apps Script, HTML, and AppSheet, we build affordable business automation tools tailored to your workflow.</p>
-
+  <p class="section-tag">Custom Dev Solutions</p>
+  <h2 class="section-title">Simple. Powerful.<br>Web Apps & Tools</h2>
+  <p class="section-desc">Using Google Apps Script, HTML, and AppSheet, we build affordable business automation tools tailored to your workflow.</p>
   <div class="prog-grid">
-    <div class="prog-card reveal">
+    <div class="prog-card">
       <h3>🧾 Invoicing System</h3>
       <p>Custom invoicing tools built with Google Sheets & Apps Script. Auto-calculate, send, and track — all from a browser.</p>
     </div>
-    <div class="prog-card reveal">
+    <div class="prog-card">
       <h3>🌐 Business Websites</h3>
       <p>Clean, functional HTML websites. Perfect for small businesses needing an online presence without the big price tag.</p>
     </div>
-    <div class="prog-card reveal">
+    <div class="prog-card">
       <h3>🏷️ Label Printing Tool</h3>
       <p>Web-based label generation and printing systems. Input data, auto-format, and print — fast and accurate.</p>
     </div>
-    <div class="prog-card reveal">
+    <div class="prog-card">
       <h3>📊 AppSheet Apps</h3>
       <p>No-code mobile & desktop apps for inventory, orders, tracking, and more. Quick to deploy, easy to use.</p>
     </div>
-    <div class="prog-card reveal">
+    <div class="prog-card">
       <h3>⚙️ Google Workspace Automation</h3>
       <p>Connect your Sheets, Docs, Gmail & Drive with smart scripts. Automate repetitive tasks and save hours every week.</p>
     </div>
-    <div class="prog-card reveal">
+    <div class="prog-card">
       <h3>✨ Custom Solutions</h3>
       <p>Have a unique business need? Tell us what you want to automate or build — we'll make it work affordably.</p>
     </div>
   </div>
 </section>
 
-<div class="divider" style="position:relative;z-index:1;max-width:1200px;margin:0 auto;"></div>
+<div class="divider"></div>
 
 <!-- HOW IT WORKS -->
 <section>
-  <p class="section-tag reveal">Simple Process</p>
-  <h2 class="section-title reveal">How It Works</h2>
+  <p class="section-tag">Simple Process</p>
+  <h2 class="section-title">How It Works</h2>
   <div class="process-steps">
     <div class="step">
       <div class="step-num">01</div>
@@ -942,8 +856,8 @@
   </div>
 </section>
 
-<!-- CTA -->
-<section id="contact" style="padding-top: 0;">
+<!-- CONTACT / CTA -->
+<section id="contact" style="padding-top:0;">
   <div class="cta-section">
     <p class="section-tag" style="margin-bottom:12px;">Let's Work Together</p>
     <h2>Ready to Fix, Upgrade<br>or Build Something?</h2>
@@ -973,7 +887,6 @@
     <p style="font-size:0.72rem;text-transform:uppercase;letter-spacing:3px;color:#FFD700;font-weight:600;margin-bottom:8px;">Free Quote</p>
     <h3 style="font-family:'Orbitron',monospace;font-size:1.3rem;font-weight:900;color:#E8EDF5;margin-bottom:6px;">Tell Us What You Need</h3>
     <p style="font-size:0.85rem;color:#7A8BA0;margin-bottom:28px;">Fill in the details and we'll get back to you shortly.</p>
-
     <div id="quoteForm">
       <div style="margin-bottom:16px;">
         <label style="font-size:0.78rem;color:#7A8BA0;display:block;margin-bottom:6px;letter-spacing:0.5px;">YOUR NAME</label>
@@ -996,7 +909,6 @@
       </button>
       <p style="font-size:0.75rem;color:#7A8BA0;text-align:center;margin-top:12px;">We'll respond within 24 hours 🚀</p>
     </div>
-
     <div id="quoteSuccess" style="display:none;text-align:center;padding:20px 0;">
       <div style="font-size:3rem;margin-bottom:16px;">✅</div>
       <h4 style="font-family:'Orbitron',monospace;color:#39FF14;margin-bottom:8px;">Message Sent!</h4>
@@ -1013,10 +925,17 @@
 </footer>
 
 <script>
-// Modal
+// Mobile menu
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+
+// Quote Modal
 function openQuoteModal() {
-  const modal = document.getElementById('quoteModal');
-  modal.style.display = 'flex';
+  document.getElementById('quoteModal').style.display = 'flex';
   document.body.style.overflow = 'hidden';
 }
 function closeQuoteModal() {
@@ -1039,27 +958,18 @@ function submitQuote() {
     return;
   }
   const msg = encodeURIComponent(
-    `Hi TechFix Pro! 👋\n\n*New Quote Request*\n\n👤 Name: ${name}\n📧 Email: ${email || 'N/A'}\n📞 Phone: ${phone}\n\n📝 Request:\n${desc}`
+    'Hi TechFix Pro! 👋\n\n*New Quote Request*\n\n👤 Name: ' + name +
+    '\n📧 Email: ' + (email || 'N/A') +
+    '\n📞 Phone: ' + phone +
+    '\n\n📝 Request:\n' + desc
   );
   document.getElementById('quoteForm').style.display = 'none';
   document.getElementById('quoteSuccess').style.display = 'block';
-  setTimeout(() => {
-    window.open(`https://wa.me/60166868062?text=${msg}`, '_blank');
+  setTimeout(function() {
+    window.open('https://wa.me/60166868062?text=' + msg, '_blank');
     setTimeout(closeQuoteModal, 2000);
   }, 800);
 }
-
-// Intersection Observer for reveal animations
-const reveals = document.querySelectorAll('.reveal');
-
-// Fallback: make all visible after short delay
-setTimeout(() => reveals.forEach(el => el.classList.add('visible')), 300);
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) entry.target.classList.add('visible');
-  });
-}, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
-reveals.forEach(el => observer.observe(el));
-</script></body>
+</script>
+</body>
 </html>
